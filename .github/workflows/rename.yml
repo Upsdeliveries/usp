@@ -1,0 +1,19 @@
+name: Rename usp-delivery to index
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename usp-delivery.html to index.html
+        run: |
+          git mv usp-delivery.html index.html
+          git config user.name "Upsdeliveries"
+          git config user.email "actions@github.com"
+          git commit -m "Rename usp-delivery.html to index.html" || echo "nothing to commit"
+          git push
